@@ -1,0 +1,21 @@
+.page-header {
+  @include pxRem(padding, 10);
+  background: map-get($colors, bg-gray);
+  text-align: center;
+}
+.ant-layout-header {
+  background-color: map-get($map: $colors, $key: white);
+  border-bottom: 0;
+  padding: 0;
+}
+.ant-menu-horizontal {
+  border-bottom: none;
+  justify-content: flex-end;
+  padding: 0 10px;
+}
+.ant-menu-title-content {
+  font-size: 1.125rem;
+}
+.ant-space-item {
+  font-size: 1.125rem;
+}

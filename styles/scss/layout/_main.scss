@@ -1,0 +1,7 @@
+.ant-layout-content {
+  @include pxRem(padding, 0 50);
+  min-height: 80vh;
+}
+.ant-layout {
+  background-color: map-get($map: $colors, $key: white) ;
+}

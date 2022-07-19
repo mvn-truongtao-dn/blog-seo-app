@@ -1,0 +1,28 @@
+.blog-page {
+  .section-posts {
+    background-color: white;
+  }
+  .section-title {
+    font-size: 44px;
+    line-height: 60px;
+    font-weight: 700;
+  }
+  .posts-body {
+    flex-direction: column;
+    .post {
+      margin-bottom: 1rem !important;
+      margin-right: 0;
+      padding: 1.5rem 0;
+      .post-title {
+        font-weight: map-get($map: $font-weight, $key: normal);
+      }
+      .sub-title {
+        color: #8695a4;
+        text-transform: uppercase;
+      }
+      &:first-child {
+        margin: 0;
+      }
+    }
+  }
+}

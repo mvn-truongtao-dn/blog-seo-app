@@ -1,0 +1,19 @@
+.ant-notification-notice {
+  .ant-notification-notice-icon {
+    span {
+      color: white !important;
+    }
+  }
+  .ant-notification-notice-message {
+    color: white;
+  }
+  .ant-notification-notice-close-x {
+    color: white;
+  }
+}
+.notification-success {
+  background-color: #67973b;
+}
+.notification-danger {
+  background-color: red;
+}
