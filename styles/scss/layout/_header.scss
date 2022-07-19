@@ -19,3 +19,34 @@
 .ant-space-item {
   font-size: 1.125rem;
 }
+.header-mb-content {
+  position: relative;
+  z-index: 99;
+}
+// .header-mobile {
+//   display: none;
+// }
+.header-desktop {
+  position: relative;
+}
+.header-mobile {
+  position: relative;
+  display: none;
+}
+.ant-spin {
+  &.block-center {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+}
+@include respond-below(small) {
+  .header-desktop {
+    display: none;
+  }
+
+  // .header-mobile {
+  //   display: block;
+  // }
+}

@@ -56,8 +56,8 @@ export default function HeaderDesktop(props: HeaderDesktopProps) {
     },
   ]}></Menu>)
   return (
-    <Auth>
-      <Header className=''>
+    <Auth component="header-desktop">
+      <Header className='header-dt'>
         <div className='container'>
           <Row className='justify-content-end'>
             <Col>
@@ -68,7 +68,9 @@ export default function HeaderDesktop(props: HeaderDesktopProps) {
                 selectedKeys={[current]}
                 mode='horizontal'
                 items={items}
-              />
+              >
+              </Menu>
+
 
             </Col>
             <Col >

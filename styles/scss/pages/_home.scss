@@ -91,7 +91,7 @@
     }
     .ant-card-body {
       padding: 0 1rem;
-      height: 100%;
+      min-height: 204px;
       flex: 1;
       width: 100%;
       display: flex;
@@ -159,13 +159,23 @@
     align-items: center;
     .post {
       margin: 1rem 1rem;
+      &:last-child  {
+        margin-right: 1rem;
+      }
     }
+
   }
 }
 
 @include respond-below(small) {
   .section-works .ant-card {
     flex-direction: column;
+    .ant-card-cover {
+      width: 100%;
+    }
+    .ant-card-body {
+      height: 250px;
+    }
     .post {
       .ant-row {
         flex-direction: column;

@@ -6,13 +6,13 @@ import * as React from 'react';
 import { useEffect } from 'react';
 export interface AuthProps {
   children: React.ReactNode;
-
+  component: string
 }
 export interface User {
   username: string; city: string; email: string;
 }
 
-export function Auth({ children }: AuthProps) {
+export function Auth({ component,children }: AuthProps) {
   const router = useRouter();
   const { profile, firstLoading } = useAuth();
   useEffect(() => {
@@ -20,6 +20,8 @@ export function Auth({ children }: AuthProps) {
       router.push('/login')
     }
   }, [router, profile, firstLoading])
-  if (!profile?.username) return <Spin></Spin>;
-  return <div>{children}</div>;
+  // if (!profile?.username) return <Spin></Spin>;
+  return <div className={component}>
+    { !profile?.username ? (<Spin className='block-center'></Spin>): (children)}
+   </div>;
 }

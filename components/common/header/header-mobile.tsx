@@ -3,7 +3,8 @@ import { Button, Col, Menu, MenuProps, Row } from 'antd';
 import { Header } from 'antd/lib/layout/layout';
 import * as React from 'react';
 import { useState } from 'react';
-export interface HeaderMobileProps {}
+import { Auth } from '../auth';
+export interface HeaderMobileProps { }
 const items: MenuProps['items'] = [
   {
     label: 'Works',
@@ -25,26 +26,28 @@ export default function HeaderMobile(props: HeaderMobileProps) {
     setCollapsed(!collapsed);
   };
   return (
-    <Header className='d-none'>
-      <div className='container'>
-        <Row className='justify-content-end'>
-          <Button
-            type='primary'
-            onClick={toggleCollapsed}
-            style={{ marginBottom: 16 }}
-          >
-            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          </Button>
-          <Col span={24} className='flex justify-content-end'>
-            <Menu
-              defaultOpenKeys={['works']}
-              mode='inline'
-              inlineCollapsed={collapsed}
-              items={items}
-            />
-          </Col>
-        </Row>
-      </div>
-    </Header>
+    <Auth component='header-mobile'>
+      <Header className='header-mb d-none'>
+        <div className='container header-mb-content'>
+          <Row className='justify-content-end'>
+            <Button
+              type='primary'
+              onClick={toggleCollapsed}
+              style={{ marginBottom: 16 }}
+            >
+              {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            </Button>
+            <Col span={24} className='flex justify-content-end'>
+              <Menu
+                defaultOpenKeys={['works']}
+                mode='inline'
+                inlineCollapsed={collapsed}
+                items={items}
+              />
+            </Col>
+          </Row>
+        </div>
+      </Header>
+    </Auth>
   );
 }
