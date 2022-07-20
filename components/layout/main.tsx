@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllWork } from 'store/workSlice';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { InstagramOutlined, FacebookOutlined, TwitterOutlined, LinkedinOutlined } from '@ant-design/icons';
 const items: MenuProps['items'] = [
   {
     label: 'Works',
@@ -33,7 +34,7 @@ export function MainLayout({ children }: LayoutProps) {
     //   dispatch(getAllWork(res.data));
     // });
     console.log("Mainnnnnnnnnnnnn");
-    
+
   }, [router]);
   return (
     <Layout>
@@ -43,7 +44,15 @@ export function MainLayout({ children }: LayoutProps) {
       </Content>
       <Footer>
         <div className='container'>
-          <h1 style={{ textAlign: "center" }}>Footer</h1>
+          <div className="page-footer">
+            <ul className='group-social'>
+              <li className="item-social"><FacebookOutlined /></li>
+              <li className="item-social"><InstagramOutlined /></li>
+              <li className="item-social"><TwitterOutlined /></li>
+              <li className="item-social"><LinkedinOutlined /></li>
+            </ul>
+            <div>Copyright ©2020 All rights reserved</div>
+          </div>
         </div>
       </Footer>
     </Layout>

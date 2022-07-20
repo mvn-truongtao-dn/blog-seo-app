@@ -7,10 +7,12 @@ import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getAllWork } from 'store/workSlice';
-import { Breadcrumb, Button, Col, Row } from 'antd';
+import { Breadcrumb, Button, Col, Image, Row } from 'antd';
 import { LeftOutlined, PlusOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import useSWR from 'swr';
+import bg from "../../images/bg.jpg";
+
 export interface WorksPageProps {
   works: Work[];
 

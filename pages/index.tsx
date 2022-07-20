@@ -2,6 +2,7 @@ import { MainLayout } from '@/components/layout';
 import type { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import avatar from '../images/avatar.png';
+
 import PostItem from '@/components/post/post-item';
 import { Post } from '@/models/index';
 import WorkList from '@/components/work/work-list';
@@ -89,6 +90,7 @@ const Home = ({ works }: HomeProps) => {
             </div>
             <div className='hero-avatar'>
               <Image src={avatar} alt="abc"></Image>
+
             </div>
           </div>
           <div className='btn-hero'>

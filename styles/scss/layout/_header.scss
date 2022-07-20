@@ -31,14 +31,21 @@
 }
 .header-mobile {
   position: relative;
+  padding-top: 1rem;
   display: none;
+  .menu-hidden {
+    position: relative;
+    left: -105%;
+    transition: left 0.5s linear;
+  }
+  .menu-show {
+    left: 0;
+    transition: left 0.5s linear;
+  }
 }
 .ant-spin {
   &.block-center {
     display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
   }
 }
 @include respond-below(small) {
@@ -46,7 +53,7 @@
     display: none;
   }
 
-  // .header-mobile {
-  //   display: block;
-  // }
+  .header-mobile {
+    display: block;
+  }
 }

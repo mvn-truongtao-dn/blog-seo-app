@@ -9,6 +9,7 @@ import { getAllWork } from 'store/workSlice';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { RootState } from 'store/store';
+import { Spin } from 'antd';
 
 export interface WorkListProps {
   pathName: string,
@@ -39,7 +40,7 @@ export default function WorkList({ pathName, listData }: WorkListProps) {
 
   return <>
     {
-      worksList && (
+      worksList.length === 0 ? (<Spin className='block-center'></Spin>) : (
 
         worksList.map((item: any) => (
           <div key={item.id}>

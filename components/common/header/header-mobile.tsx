@@ -27,9 +27,9 @@ export default function HeaderMobile(props: HeaderMobileProps) {
   };
   return (
     <Auth component='header-mobile'>
-      <Header className='header-mb d-none'>
+      <Header className='header-mb'>
         <div className='container header-mb-content'>
-          <Row className='justify-content-end'>
+          <Row className=''>
             <Button
               type='primary'
               onClick={toggleCollapsed}
@@ -37,11 +37,12 @@ export default function HeaderMobile(props: HeaderMobileProps) {
             >
               {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             </Button>
-            <Col span={24} className='flex justify-content-end'>
+            <Col span={24} className={`flex justify-content-end ${collapsed ? ("menu-hidden") : ("menu-show")}`}>
               <Menu
                 defaultOpenKeys={['works']}
                 mode='inline'
-                inlineCollapsed={collapsed}
+                // inlineCollapsed={collapsed}
+                onClick={toggleCollapsed}
                 items={items}
               />
             </Col>

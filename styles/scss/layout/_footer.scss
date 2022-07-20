@@ -1,5 +1,17 @@
 .page-footer {
-  @include pxRem(padding, 10);
-  background: map-get($colors, bg-gray);
+  // @include pxRem(padding, 2rem,0);
+  @include pxRem(padding, 1.5rem 0);
   text-align: center;
+  margin-top: 2rem;
+}
+.ant-layout-footer {
+  background-color: white;
+  .item-social {
+    display: inline-block;
+    .anticon {
+      font-size: 30px;
+      padding: 0 0.5rem;
+    }
+    margin-bottom: 0.5rem;
+  }
 }
