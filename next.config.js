@@ -4,13 +4,11 @@ const nextConfig = {
   images: {
     domains: ['res.cloudinary.com'],
   },
+  i18n: {
+    locales: ['en', 'ja'],
+    defaultLocale: 'en',
+  },
+  trailingSlash: true
 };
 
 module.exports = nextConfig;
-// module.exports = {
-//   experimental: {
-//     images: {
-//       unoptimized: true,
-//     },
-//   },
-// };

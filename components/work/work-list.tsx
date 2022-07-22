@@ -1,48 +1,43 @@
-import { Work } from '@/models/work';
-import axios from 'axios';
-import { GetStaticProps } from 'next';
 import * as React from 'react';
 import WorkItem from './work-item';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getAllWork } from 'store/workSlice';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { RootState } from 'store/store';
-import { Spin } from 'antd';
+import { Pagination, PaginationProps, Spin } from 'antd';
+import { useState } from 'react';
 
 export interface WorkListProps {
   pathName: string,
-  listData: any[]
+  listData: any[],
+  lengthData?: number
 }
 
-export default function WorkList({ pathName, listData }: WorkListProps) {
+export default function WorkList({ pathName, listData, lengthData }: WorkListProps) {
   const worksList = JSON.parse(JSON.stringify(useSelector((state: RootState) => state.works.works))).reverse();
-  // const abcd = useSelector((state: RootState) => state.works.works);
-
-  console.log(worksList);
-
-  // const worksList: any = [];
-  const dispatch = useDispatch();
-  const router = useRouter();
+  const [currentPage, setCurrentPage] = useState(1);
+  const currentPageData = React.useRef(1);
+  const [dataPerPage, setDataPerPage] = useState(10);
+  let indexOfLastData = currentPageData.current * dataPerPage;
+  let indexOfFirstData = indexOfLastData - dataPerPage;
+  let currentData = worksList.slice(indexOfFirstData, indexOfLastData);
+  const pageNumber = [];
+  for (let i = 1; i <= Math.ceil(worksList.length / dataPerPage); i++) {
+    pageNumber.push(i);
+  }
   const namePath = pathName.split("/")[1];
-  // useEffect(() => {
-  //   // setData(worksList);
-  //   (async () => {
-  //     const response = await fetch(
-  //       `https://6274e2bf345e1821b230ebee.mockapi.io/works`
-  //     );
-  //     const data = (await response.json());
-  //     console.log("data", data);
-  //     dispatch(getAllWork(data));
-  //   })();
-  // }, [router]);
+  const handleClickPaginate: PaginationProps['onChange'] = (pageNumber) => {
+    console.log(pageNumber);
+    setCurrentPage(pageNumber);
+    currentPageData.current = pageNumber;
+  }
 
   return <>
     {
-      worksList.length === 0 ? (<Spin className='block-center'></Spin>) : (
+      currentData.length === 0 ? (<Spin className='block-center'></Spin>) : (
 
-        worksList.map((item: any) => (
+        currentData.map((item: any) => (
           <div key={item.id}>
             {
               pathName.split("/")[1] == "" ? (<Link key={item.id} href={`/works/${item.id}`}>
@@ -57,6 +52,9 @@ export default function WorkList({ pathName, listData }: WorkListProps) {
           </div>
         ))
       )
+
     }
-  </>;
+    <Pagination style={{ textAlign: "center" }} defaultCurrent={1} total={lengthData} onChange={handleClickPaginate} />
+
+  </>
 }

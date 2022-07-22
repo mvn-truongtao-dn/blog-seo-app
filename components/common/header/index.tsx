@@ -8,7 +8,7 @@ export default function HeaderCustom(props: HeaderProps) {
   return (
     <>
       <HeaderDesktop></HeaderDesktop>
-      <HeaderMobile></HeaderMobile>
+      {/* <HeaderMobile></HeaderMobile> */}
     </>
   );
 }

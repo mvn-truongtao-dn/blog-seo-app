@@ -13,20 +13,15 @@ import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getAllWork } from 'store/workSlice';
+import useTrans from '@/hooks/use-trans';
+import { Empty } from 'antd';
 
 export interface HomeProps {
   works: Work[]
 }
 const Home = ({ works }: HomeProps) => {
-  // call API to get recent Posts
   const router = useRouter();
-  // const page = router.query?.page;
-  // const [workList, setWorkList] = useState<any>(works);
-  // const startRef = useRef(0);
-  // const [start, setStart] = useState(0);
-  // const [end, setEnd] = useState(2);
-  // const worksList = useSelector((state: RootState) => state.users.workList);
-  // console.log('worksList',worksList);
+  const trans = useTrans();
 
   const postList: Post[] = [
     {
@@ -51,19 +46,9 @@ const Home = ({ works }: HomeProps) => {
   ];
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(getAllWork(works));
-    (async () => {
-      const response = await fetch(
-        `https://6274e2bf345e1821b230ebee.mockapi.io/works`
-      );
-      const data = (await response.json());
-      console.log("data Home", data);
-      
-      dispatch(getAllWork(data));
-    })();
-    // console.log("data server",works);
-    
+    dispatch(getAllWork(works));
   }, []);
+  if (!works) return <><Empty /></>
   return (
     <>
       <Seo
@@ -94,7 +79,7 @@ const Home = ({ works }: HomeProps) => {
             </div>
           </div>
           <div className='btn-hero'>
-            <button className='btn btn-orange-pink'>Download Resume</button>
+            <button className='btn btn-orange-pink'>{trans.home.download} Resume</button>
           </div>
         </div>
       </div>
@@ -121,7 +106,7 @@ const Home = ({ works }: HomeProps) => {
             <div className='section-title'>Feature works</div>
           </div>
           <div className='works-body'>
-            <WorkList listData={works} pathName={router.pathname}></WorkList>
+            <WorkList lengthData={works.length} listData={works} pathName={router.pathname}></WorkList>
           </div>
         </div>
       </div>
@@ -130,16 +115,18 @@ const Home = ({ works }: HomeProps) => {
 };
 Home.Layout = MainLayout;
 export default Home;
-// export const getStaticProps: GetStaticProps = async () => {
-//   const response = await fetch("https://6274e2bf345e1821b230ebee.mockapi.io/works");
-//   const data = (await response.json());
-
-//   console.log(data);
-
-//   return {
-//     props: {
-//       works: data
-//     }
-//     ,revalidate: 5
-//   }
-// }
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await fetch("https://6274e2bf345e1821b230ebee.mockapi.io/works");
+  const data = (await response.json());
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
+  return {
+    props: {
+      works: data
+    }
+    , revalidate: 5
+  }
+}

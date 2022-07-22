@@ -23,9 +23,7 @@ const fetcher = async () => {
 };
 export default function WorksPage({ works }: WorksPageProps) {
   const router = useRouter();
-  console.log(works);
   const { data,mutate } = useSWR('https://6274e2bf345e1821b230ebee.mockapi.io/works', fetcher);
-  console.log("data useSWR",data);
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(getAllWork(works));
@@ -33,12 +31,9 @@ export default function WorksPage({ works }: WorksPageProps) {
       const response = await fetch(
         `https://6274e2bf345e1821b230ebee.mockapi.io/works`
       );
-      const data = (await response.json());
-      console.log("data Works",data);
-      
+      const data = (await response.json());      
       dispatch(getAllWork(data));
     })();
-    // console.log("data server",works);
     
   }, []);
 
@@ -62,7 +57,7 @@ export default function WorksPage({ works }: WorksPageProps) {
             </Row>
           </div>
           <div className='works-body'>
-            <WorkList listData={works} pathName={router.pathname}></WorkList>
+            <WorkList lengthData={works.length} listData={works} pathName={router.pathname}></WorkList>
           </div>
         </div>
       </div>

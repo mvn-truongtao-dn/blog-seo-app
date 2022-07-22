@@ -3,56 +3,96 @@
   background: map-get($colors, bg-gray);
   text-align: center;
 }
-.ant-layout-header {
-  background-color: map-get($map: $colors, $key: white);
-  border-bottom: 0;
-  padding: 0;
-}
-.ant-menu-horizontal {
-  border-bottom: none;
-  justify-content: flex-end;
-  padding: 0 10px;
-}
-.ant-menu-title-content {
-  font-size: 1.125rem;
-}
-.ant-space-item {
-  font-size: 1.125rem;
-}
-.header-mb-content {
-  position: relative;
-  z-index: 99;
-}
-// .header-mobile {
-//   display: none;
-// }
+
 .header-desktop {
   position: relative;
-}
-.header-mobile {
-  position: relative;
-  padding-top: 1rem;
-  display: none;
-  .menu-hidden {
-    position: relative;
-    left: -105%;
-    transition: left 0.5s linear;
+  .ant-layout-header {
+    background-color: map-get($map: $colors, $key: white);
+    border-bottom: 0;
+    padding: 0;
+    height: 48px;
+    line-height: 48px;
   }
-  .menu-show {
-    left: 0;
-    transition: left 0.5s linear;
+  .ant-menu-horizontal {
+    border-bottom: none;
+    justify-content: flex-end;
+    padding: 0 10px;
+  }
+  .ant-menu-title-content {
+    font-size: 1.125rem;
+  }
+  .ant-space-item {
+    font-size: 1.125rem;
   }
 }
+
 .ant-spin {
   &.block-center {
     display: block;
   }
 }
-@include respond-below(small) {
-  .header-desktop {
+
+.menu-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .logo {
+    font-size: 2rem;
+  }
+  .barsMenu {
+    float: right;
+    height: 32px;
+    padding: 6px;
+    // margin-top: 8px;
     display: none;
+    background: none;
+    margin-left: 0.5rem;
+    .barsBtn {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #1890ff;
+      position: relative;
+      &:after,
+      &:before {
+        content: attr(x);
+        width: 20px;
+        position: absolute;
+        top: -6px;
+        left: 0;
+        height: 2px;
+        background: #1890ff;
+      }
+      &:after {
+        top: auto;
+        bottom: -6px;
+      }
+    }
+  }
+}
+.menu-content {
+  display: flex;
+  .ant-menu-horizontal {
+    border-bottom: none;
+  }
+}
+.ant-drawer-body {
+  padding: 0;
+}
+
+@include respond-below(medium) {
+  .menu-bar {
+    .barsMenu {
+      display: inline-block;
+    }
   }
 
+  .left-menu {
+    display: none;
+  }
+}
+
+@include respond-below(small) {
   .header-mobile {
     display: block;
   }

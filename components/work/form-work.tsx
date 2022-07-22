@@ -43,7 +43,6 @@ export default function FormWork({ workId }: WorkUpdateProps) {
       (async () => {
         const response = await fetch(`https://6274e2bf345e1821b230ebee.mockapi.io/works/${workId}`);
         const data = await response.json();
-        console.log("data", data);
         const { title, subTitle, tabList, shortDescription, thumbnailUrl } = data;
         setTitle(title);
         setSubTitle(subTitle);
@@ -74,18 +73,12 @@ export default function FormWork({ workId }: WorkUpdateProps) {
       (async () => {
         setIsloading(true);
         await axios.put(`https://6274e2bf345e1821b230ebee.mockapi.io/works/${workId}`, { id: workId, ...data }).then((res) => {
-          console.log(res);
         });
         await dispatch(updateWork({ id: workId, data }));
         await mutate();
 
         setIsloading(false);
       })();
-      console.log("update");
-      console.log(index);
-      // axios.put(`https://6274e2bf345e1821b230ebee.mockapi.io/works/${workId}`, data).then((res) => {
-      //   console.log(res);
-      // });
       router.push(
         {
           pathname: '/works',
@@ -96,7 +89,6 @@ export default function FormWork({ workId }: WorkUpdateProps) {
       (async () => {
         setIsloading(true);
         await axios.post(`https://6274e2bf345e1821b230ebee.mockapi.io/works`, { id: uuid(), ...data }).then((res) => {
-          console.log(res);
         })
         await dispatch(addNewWork({ id: uuid(), ...data }));
         await mutate();
@@ -108,13 +100,11 @@ export default function FormWork({ workId }: WorkUpdateProps) {
           pathname: '/works',
         },
       )
-      console.log("create");
     }
 
   }
   const handleUpload: UploadProps['onChange'] = ({ fileList }) => {
     setFileList(fileList);
-    console.log(fileList);
   };
 
   return (
